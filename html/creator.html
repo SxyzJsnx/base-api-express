@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator - SxyzJsnx</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --text: #f8fafc;
+      --text-secondary: #cbd5e1;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Background elements */
+    .bg-blur {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .blur-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+    }
+    
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      top: 10%;
+      left: 5%;
+    }
+    
+    .circle-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      bottom: 10%;
+      right: 5%;
+    }
+    
+    .container {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 50px 40px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Profile header */
+    .profile-header {
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      transition: transform 0.3s ease;
+    }
+    
+    .avatar:hover {
+      transform: scale(1.05);
+    }
+    
+    .name {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(to right, var(--text), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    
+    .role {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+    
+    /* Sliding text section */
+    .sliding-section {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      padding: 15px;
+      margin: 0 auto 35px;
+      max-width: 600px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .sliding-text-container {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+    
+    .sliding-text-container::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+    
+    .sliding-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+      padding: 0 20px;
+      animation: slideText 15s linear infinite;
+      display: inline-block;
+      min-width: 100%;
+      text-align: center;
+    }
+    
+    .sliding-text-container:hover .sliding-text {
+      animation-play-state: paused;
+    }
+    
+    @keyframes slideText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    .scroll-hint {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 10px;
+      border-radius: 10px;
+      opacity: 0.7;
+    }
+    
+    /* Description */
+    .desc {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 35px;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    
+    .highlight:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    /* Button */
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 12px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border: none;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .github-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--primary-dark), var(--secondary));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .github-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
+    }
+    
+    .github-btn:hover::before {
+      opacity: 1;
+    }
+    
+    .github-btn i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 20px;
+      min-width: 140px;
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 25px;
+      }
+      
+      .avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+      }
+      
+      .name {
+        font-size: 2.3rem;
+      }
+      
+      .role {
+        font-size: 1.1rem;
+      }
+      
+      .sliding-text {
+        font-size: 1.5rem;
+      }
+      
+      .desc {
+        font-size: 1rem;
+      }
+      
+      .stats {
+        gap: 15px;
+      }
+      
+      .stat-item {
+        padding: 15px;
+        min-width: 120px;
+      }
+      
+      .stat-value {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      .avatar {
+        width: 85px;
+        height: 85px;
+        font-size: 36px;
+      }
+      
+      .name {
+        font-size: 2rem;
+      }
+      
+      .sliding-text {
+        font-size: 1.3rem;
+        padding: 0 15px;
+      }
+      
+      .github-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      
+      .stats {
+        gap: 10px;
+      }
+      
+      .stat-item {
+        padding: 12px;
+        min-width: 100px;
+      }
+      
+      .stat-value {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blur">
+    <div class="blur-circle circle-1"></div>
+    <div class="blur-circle circle-2"></div>
+  </div>
+  
+  <div class="container">
+    <div class="profile-header">
+      <div class="avatar">
+        <i class="fas fa-code"></i>
+      </div>
+      <h1 class="name">Sxyz</h1>
+      <div class="role">Developer of SxyzJsnx - API</div>
+    </div>
+    
+    <div class="sliding-section">
+      <div class="sliding-text-container">
+        <div class="sliding-text">SxyzJsnx - API: RESTful • Open Source • Free to Use • Educational • JSON Data</div>
+      </div>
+      <div class="scroll-hint">Geser untuk melihat lebih banyak</div>
+    </div>
+    
+    <div class="desc">
+      Seorang anak lelaki berumur 15 tahun yang penuh semangat dan dedikasi dalam dunia pemrograman.  
+      Sxyz membangun <span class="highlight">SxyzJsnx - API</span>, sebuah API open source yang dirancang untuk membantu para programmer—baik pemula maupun profesional—dalam menjelajahi dunia RESTful API.  
+      Proyek ini dibuat sebagai bentuk kontribusinya terhadap komunitas pengembang, memberikan akses pembelajaran dan eksplorasi secara bebas dan terbuka.
+    </div>
+    
+    <a href="https://github.com/SxyzJsnx" class="github-btn" target="_blank">
+      <i class="fab fa-github"></i> Kunjungi GitHub
+    </a>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value">15</div>
+        <div class="stat-label">Usia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Open Source</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Akses</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Smooth scroll functionality for sliding text
+    document.addEventListener('DOMContentLoaded', function() {
+      const slidingContainer = document.querySelector('.sliding-text-container');
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      
+      slidingContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slidingContainer.classList.add('active');
+        startX = e.pageX - slidingContainer.offsetLeft;
+        scrollLeft = slidingContainer.scrollLeft;
+      });
+      
+      slidingContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        slidingContainer.classList.remove('active');
+      });
+      
+      slidingContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        slidingContainer.classList.remove('active');
+      });
+      
+      slidingContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slidingContainer.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed
+        slidingContainer.scrollLeft = scrollLeft - walk;
+      });
+      
+      // Touch events for mobile
+      slidingContainer.addEventListener('touchstart', (e) => {
+        isDown = true;
+        slidingContainer.classList.add('active');
+        startX = e.touches[0].pageX - slidingContainer.offsetLeft;
+        scrollLeft = slidingContainer.scrollLeft;
+      });
+      
+      slidingContainer.addEventListener('touchend', () => {
+        isDown = false;
+        slidingContainer.classList.remove('active');
+      });
+      
+      slidingContainer.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.touches[0].pageX - slidingContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        slidingContainer.scrollLeft = scrollLeft - walk;
+      });
+    });
+  </script>
+</body>
+</html>

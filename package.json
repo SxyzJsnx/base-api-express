@@ -1,0 +1,33 @@
+{
+  "name": "base-api-express",
+  "version": "1.0.0",
+  "description": "a base rest API use express for backend and html/css for frontend docs dengan swagger.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SxyzJsnx/base-api-express.git"
+  },
+  "keywords": [
+    "rest-api",
+    "API",
+    "base"
+  ],
+  "author": "SxyzJsnx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SxyzJsnx/base-api-express/issues"
+  },
+  "homepage": "https://github.com/SxyzJsnx/base-api-express#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
