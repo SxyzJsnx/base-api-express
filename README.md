@@ -37,7 +37,7 @@ Semua middleware penting dan security headers telah dikonfigurasi untuk deployme
 
 ```
 ├── routes/             # Definisi route API (file *.js)
-├── html/               # Tempat html untum frontend.
+├── html/               # Tempat html untuk frontend.
 ├── server.js          # Entry point aplikasi utama dengan konfigurasi
 ├── package.json       # Dependensi proyek dan script
 └── README.md         # Dokumentasi proyek
